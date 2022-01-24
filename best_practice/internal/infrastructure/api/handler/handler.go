@@ -36,6 +36,7 @@ func NewRouter(us *userrepo.Users) *Router {
 	return r
 }
 
+// DTO object
 type User struct {
 	ID         uuid.UUID `json:"id"`
 	Name       string    `json:"name"`
@@ -70,6 +71,7 @@ func (rt *Router) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// small DTO transition
 	bu := user.User{
 		Name: u.Name,
 		Data: u.Data,

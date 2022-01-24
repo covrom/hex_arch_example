@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// нужен только тут
+// only needed here
 type UserStore interface {
 	Create(ctx context.Context, u user.User) (*uuid.UUID, error)
 	Read(ctx context.Context, uid uuid.UUID) (*user.User, error)
