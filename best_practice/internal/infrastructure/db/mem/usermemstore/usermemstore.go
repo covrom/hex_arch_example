@@ -7,12 +7,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
+	"github.com/covrom/hex_arch_example/best_practice/internal/entities/user"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
 
 	"github.com/google/uuid"
 )
 
-var _ user.UserStore = &Users{}
+var _ userrepo.UserStore = &Users{}
 
 type Users struct {
 	sync.Mutex

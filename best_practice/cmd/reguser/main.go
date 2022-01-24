@@ -6,11 +6,11 @@ import (
 	"os/signal"
 	"sync"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/api/handler"
-	"github.com/covrom/hex_arch_example/best_practice/internal/api/server"
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/starter"
-	"github.com/covrom/hex_arch_example/best_practice/internal/db/mem/usermemstore"
+	"github.com/covrom/hex_arch_example/best_practice/internal/infrastructure/api/handler"
+	"github.com/covrom/hex_arch_example/best_practice/internal/infrastructure/api/server"
+	"github.com/covrom/hex_arch_example/best_practice/internal/infrastructure/db/mem/usermemstore"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/starter"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 
 	ust := usermemstore.NewUsers()
 	a := starter.NewApp(ust)
-	us := user.NewUsers(ust)
+	us := userrepo.NewUsers(ust)
 	h := handler.NewRouter(us)
 	srv := server.NewServer(":8000", h)
 

@@ -6,13 +6,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
-	"github.com/covrom/hex_arch_example/best_practice/internal/db/mem/usermemstore"
+	"github.com/covrom/hex_arch_example/best_practice/internal/infrastructure/db/mem/usermemstore"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
 )
 
 func TestRouter_CreateUser(t *testing.T) {
 	ust := usermemstore.NewUsers()
-	us := user.NewUsers(ust)
+	us := userrepo.NewUsers(ust)
 	rt := NewRouter(us)
 
 	hts := httptest.NewServer(rt)
@@ -36,7 +36,7 @@ func TestRouter_CreateUser(t *testing.T) {
 
 func TestRouter_CreateUser2(t *testing.T) {
 	ust := usermemstore.NewUsers()
-	us := user.NewUsers(ust)
+	us := userrepo.NewUsers(ust)
 	rt := NewRouter(us)
 
 	h := rt.AuthMiddleware(http.HandlerFunc(rt.CreateUser)).ServeHTTP

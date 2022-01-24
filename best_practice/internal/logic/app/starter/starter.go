@@ -4,22 +4,22 @@ import (
 	"context"
 	"sync"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
 )
 
 type App struct {
-	us *user.Users
+	us *userrepo.Users
 }
 
-func NewApp(ust user.UserStore) *App {
+func NewApp(ust userrepo.UserStore) *App {
 	a := &App{
-		us: user.NewUsers(ust),
+		us: userrepo.NewUsers(ust),
 	}
 	return a
 }
 
 type APIServer interface {
-	Start(us *user.Users)
+	Start(us *userrepo.Users)
 	Stop()
 }
 

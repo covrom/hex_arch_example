@@ -5,15 +5,15 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/starter"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/starter"
 )
 
 var _ starter.APIServer = &Server{}
 
 type Server struct {
 	srv http.Server
-	us  *user.Users
+	us  *userrepo.Users
 }
 
 func NewServer(addr string, h http.Handler) *Server {
@@ -35,7 +35,8 @@ func (s *Server) Stop() {
 	cancel()
 }
 
-func (s *Server) Start(us *user.Users) {
+func (s *Server) Start(us *userrepo.Users) {
 	s.us = us
+	// TODO: use user repo
 	go s.srv.ListenAndServe()
 }

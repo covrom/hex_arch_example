@@ -7,17 +7,18 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/covrom/hex_arch_example/best_practice/internal/app/repos/user"
+	"github.com/covrom/hex_arch_example/best_practice/internal/entities/user"
+	"github.com/covrom/hex_arch_example/best_practice/internal/logic/app/repos/userrepo"
 
 	"github.com/google/uuid"
 )
 
 type Router struct {
 	*http.ServeMux
-	us *user.Users
+	us *userrepo.Users
 }
 
-func NewRouter(us *user.Users) *Router {
+func NewRouter(us *userrepo.Users) *Router {
 	r := &Router{
 		ServeMux: http.NewServeMux(),
 		us:       us,
